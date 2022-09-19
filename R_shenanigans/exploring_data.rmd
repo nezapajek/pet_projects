@@ -1,0 +1,72 @@
+---
+title: "exploring_co2_edata"
+author: "npajek"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## packages
+
+```{r}
+# install.packages("tidyverse")
+library('tidyverse')
+```
+
+## import data
+
+```{r}
+GHGEmissions = read_csv("GHGEmissions_CountriesOK.csv")
+```
+Remove rows with iso_code = NA
+```{r}
+GHGEmissions = GHGEmissions %>% filter(!is.na(iso_code))
+```
+
+CO2 emissions through time - visualize sum global emissions per year
+```{r}
+GHGEmissions %>%
+  group_by(year) %>%
+  summarise(total_co2 = sum(co2, na.rm=T))%>%
+  ggplot(aes(x=year, y=total_co2)) +
+    geom_line()
+```
+co2 emissions per capita / gdp per capita for year 1950 & 2010
+```{r}
+GHGEmissions %>%
+  filter(year==1950) %>%
+  mutate(gdp_per_capita = gdp/population) %>%
+  ggplot(aes(x=gdp_per_capita, y=co2_per_capita))+
+    geom_point() +
+    theme_bw()+
+    ggtitle('1950')+
+    xlab('BDP per capita [$]')+
+    ylab('CO2 per capita')
+```
+```{r}
+GHGEmissions %>%
+  filter(year==2010) %>%
+  mutate(gdp_per_capita = gdp/population) %>%
+  ggplot(aes(x=gdp_per_capita, y=co2_per_capita))+
+    geom_point() +
+    theme_bw()+
+    ggtitle('2010')+
+    xlab('BDP per capita [$]')+
+    ylab('CO2 per capita')
+```
+how much (%) of total co2 emissions did each source contribute?
+```{r}
+GHGEmissions %>%
+  select(year, country, co2, 18:22) %>%
+  filter(year >= 2000) %>%
+  summarise(total_co2 = sum(co2, na.rm=T),
+            cement_co2 = sum(cement_co2, na.rm = T)/total_co2,
+            coal_co2 = sum(coal_co2, na.rm = T)/total_co2,
+            flaring_co2 = sum(flaring_co2, na.rm=T)/total_co2,
+            gas_co2 = sum(gas_co2,na.rm=T)/total_co2,
+            oil_co2 = sum(oil_co2, na.rm=T)/total_co2)
+```
+
