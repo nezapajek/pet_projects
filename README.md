@@ -1,5 +1,6 @@
-Advent of Code 2021 4/31 \
-DataCamp \
-Leetcode 2/inf \
-dot graphviz for making flowcharts \
-R_shenanigans 
+- Advent of Code 2021 4/25 \
+- Advent of Code 2022 2/25
+- DataCamp \
+- Leetcode 2/inf \
+- dot graphviz for making flowcharts \
+- R_shenanigans 
