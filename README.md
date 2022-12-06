@@ -5,6 +5,8 @@
 - **DataCamp**
   - python_datascience_toolbox part1
   - python_datascience_toolbox part2
+  - case-study_world-bank-data
+  - data-visualisation-plotly-express
 - **dot graphviz** for making flowcharts 
 - **R** shenanigans 
 - **Leetcode**
