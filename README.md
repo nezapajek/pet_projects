@@ -7,3 +7,4 @@
   - python_datascience_toolbox part2
 - **dot graphviz** for making flowcharts 
 - **R** shenanigans 
+- **Leetcode**
