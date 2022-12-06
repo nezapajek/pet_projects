@@ -5,6 +5,5 @@
 - **DataCamp**
   - python_datascience_toolbox part1
   - python_datascience_toolbox part2
-- **Leetcode** 2/inf 
 - **dot graphviz** for making flowcharts 
 - **R** shenanigans 
